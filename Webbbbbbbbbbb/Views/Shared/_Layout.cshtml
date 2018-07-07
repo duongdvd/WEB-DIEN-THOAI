@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="create ecommerce website template for your online store, responsive mobile templates">
+    <meta name="keywords" content="ecommerce website templates, online store,">
+    <title> Mobistore Online Mobile Store Template </title>
+    <!-- Bootstrap -->
+    <link href="~/assets/client/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/client/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="~/assets/client/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- owl-carousel -->
+    <link href="~/assets/client/css/owl.carousel.css" rel="stylesheet">
+    <link href="~/assets/client/css/owl.theme.default.css" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link href="~/assets/client/css/font-awesome.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!-- top-header-->
+  
+    <!-- header-section-->
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                    <div class="logo">
+                        <a href="/Home/Index"><img src="~/assets/client/images/logo.png" alt=""> </a>
+                    </div>
+                </div>
+                <!-- /.logo -->
+                <!-- search -->
+                <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
+                    <form>
+                        <div class="search-bg">
+                            <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" placeholder="Tìm kiếm">
+                            <button type="Submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.search -->
+                <!-- account -->
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="account-section">
+                        <ul>
+                      
+                            @{Html.RenderAction("GioHang", "Home"); }
+                        </ul>
+                    </div>
+                    <!-- /.account -->
+                </div>
+                <!-- search -->
+            </div>
+        </div>
+        <!-- navigation -->
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!-- navigations-->
+                        <div id="navigation">
+                            <ul>
+                                <li class="active"><a href="/Home/Index">Trang chủ</a></li>
+                                <li class="has-sub">
+                                    <a href="#">Điện thoại</a>
+                                    <ul class="dropdown-menu pre-scrollable">
+                                        @{Html.RenderAction("DropDanhMuc", "Home"); }
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/AllBaiViet">Tin công nghệ</a>
+                                    <ul class="dropdown-menu pre-scrollable">
+                                        @{Html.RenderAction("DropBaiViet", "Home"); }
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#">Phụ kiện</a>
+                                    <ul class="dropdown-menu pre-scrollable">
+                                        @{Html.RenderAction("DropPhukien", "Home"); }
+                                    </ul>
+                                </li>
+                                <li >
+                                    <a href="/LienHe">Liên hệ</a>
+                                   
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.navigations-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /. header-section-->
+    <!-- slider -->
+    <!-- /.slider -->
+    <!-- mobile showcase -->
+    <!-- /.mobile showcase -->
+    <!-- latest products -->
+    <!-- /.latest products -->
+    <!-- seller products -->
+    <!-- /.seller products -->
+    <!-- featured products -->
+    <!-- /.featured products -->
+    <!-- cta -->
+    <!-- /.cta -->
+    <!-- features -->
+    <!-- /.features -->
+    <!-- footer -->
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- footer-company-links -->
+                <!-- footer-contact links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        @*<h3 class="footer-title">Liên hệ </h3>
+        <div class="contact-info">
+            <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+            <span class="contact-text">Số 12- ngõ 2 - Phạm Văn Đồng - HN</span>
+        </div>
+        <div class="contact-info">
+            <span class="contact-icon"><i class="fa fa-phone"></i></span>
+            <span class="contact-text">01629727328</span>
+        </div>
+        <div class="contact-info">
+            <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+            <span class="contact-text">dovanduong09@gmail.com</span>
+        </div>*@
+                        @{Html.RenderAction("DiaChi", "Home"); }
+                    </div>
+                </div>
+                <!-- /.footer-useful-links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Truy cập nhanh</h3>
+                        <ul class="arrow">
+                            <li><a href="#">Trang chủ </a></li>
+                            <li><a href="#">Diện thoại</a></li>
+                            <li><a href="#">Tin công nghệ</a></li>
+                            <li><a href="#">Phụ kiện</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-useful-links -->
+                <!-- footer-policy-list-links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Thông tin chính sách</h3>
+                        <ul class="arrow">
+                            <li><a href="#">Thanh toán</a></li>
+                            <li><a href="#">Hủy &amp; trả lại</a></li>
+                            <li><a href="#">Vận chuyển và giao hàng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-policy-list-links -->
+                <!-- footer-social links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Kết nối với chúng tôi</h3>
+                        <div class="ft-social">
+                            <span><a href="#" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a></span>
+                            <span><a href="#" class="btn-social btn-twitter"><i class="fa fa-twitter"></i></a></span>
+                            <span><a href="#" class="btn-social btn-googleplus"><i class="fa fa-google-plus"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-pinterest"><i class="fa fa-pinterest-p"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-instagram"><i class="fa fa-instagram"></i></a></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.footer-social links -->
+            </div>
+        </div>
+        <!-- tiny-footer -->
+        <div class="tiny-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="payment-method alignleft">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-cc-paypal fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-mastercard  fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-visa fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-discover fa-2x"></i></a></li>
+                            </ul>
+                        </div>
+                        <p class="alignright">
+                            Copyright © All Rights Reserved 2020 Template Design by
+                            <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- /. tiny-footer -->
+        </div>
+    </div>
+    <!-- /.footer -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/assets/client/js/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/assets/client/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/client/js/menumaker.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/assets/client/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/sticky-header.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/multiple-carousel.js"></script>
+    <script src="~/assets/client/js/custom.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/jquery.rateyo.min.js"></script>
+    <script src="~/assets/client/js/jquery.desoslide.js "></script>
+    <script type="text/javascript">
+        $('#slideshow').desoSlide({
+            thumbs: $('ul.slideshow_thumbs li > a'),
+            effect: {
+                provider: 'animate',
+                name: 'fade'
+            }
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+
+
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

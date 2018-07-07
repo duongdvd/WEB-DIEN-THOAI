@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section TenTrang{
+    Trang chủ
+}
+<div class="row">
+    @{Html.RenderAction("_tinnhan", "Home"); }
+
+    @{Html.RenderAction("_sanpham", "Home"); }
+
+    @{Html.RenderAction("_donhang", "Home"); }
+
+</div>

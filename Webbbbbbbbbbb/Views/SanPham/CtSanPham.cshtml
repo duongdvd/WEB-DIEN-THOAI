@@ -1,0 +1,450 @@
+﻿@model Model.EF.SanPham
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var SpLienquan = (List<Model.EF.SanPham>)ViewBag.Splienquan;
+}
+
+<link href="~/assets/client/css/bootstrap.min.css" rel="stylesheet">
+<!-- Style CSS -->
+<link href="~/assets/client/css/style.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- FontAwesome CSS -->
+<link href="~/assets/client/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="~/assets/client/css/jquery.desoslide.css" />
+<link rel="stylesheet" type="text/css" href="~/assets/client/css/animate.min.css">
+<link href="~/assets/client/css/scrolling-nav.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="~/assets/client/css/jquery.rateyo.min.css">
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="http://localhost:31432">Home</a>
+                        </li>
+                        <li>CtSanPham</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box">
+                <!-- product-description -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <ul id="demo1_thumbs" class="slideshow_thumbs">
+                                <li>
+                                    <a href="@Model.image">
+                                        <div class=" thumb-img"><img src="@Model.image" alt=""></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Model.image">
+                                        <div class=" thumb-img"><img src="@Model.image" alt=""></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Model.image" alt="">
+                                        <div class=" thumb-img"><img src="@Model.image" alt=""></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div id="slideshow"></div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="product-single">
+                                <h2>@Model.TenSanPham</h2>
+                                <div class="product-rating">
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star-o"></i></span>
+                                    <span class="text-secondary">&nbsp;(4.8 Review Stars)</span>
+                                </div>
+                                <p class="product-price" style="font-size: 38px;">
+
+                                    @if (Model.GiaKhuyenMai == null)
+        {
+                            <a href="#" class="product-price">@(Model.Gia.HasValue ? Model.Gia.Value.ToString("N0") + "đ" : "Liên hệ") </a>
+}
+else
+{
+                            <a href="#" class="product-price">@(Model.GiaKhuyenMai.HasValue ? Model.GiaKhuyenMai.Value.ToString("N0") + "đ" : "") </a>
+                            <a href="#" class="discounted-price"><strike>@(Model.Gia.HasValue ? Model.Gia.Value.ToString("N0") + "đ" : "Liên hệ")</strike></a>
+}
+
+                                </p>
+                                <p>@Model.MoTa</p>
+                                <div class="product-quantity">
+                                    <h5>Số lượng</h5>
+                                    <div class="quantity mb20">
+                                        <input type="number" class="input-text qty text" step="1" min="1" max="6" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*">
+                                    </div>
+                                </div>
+                                <a href="/GioHang/AddGioHang?masp=@Model.ID&sl=1" class="btn btn-default"><i class="fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng</i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box-head scroll-nav">
+                <div class="head-title">
+                    <a class="page-scroll active" href="#product">Chi tiết sản phẩm</a>
+                    <a class="page-scroll" href="#rating">Xếp hạng &amp; đánh giá</a>
+                    <a class="page-scroll" href="#review">Đánh giá của bạn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- highlights -->
+    @if (Model.DoPhanGiai != null && Model.ManHinh != null && Model.CamTruoc != null)
+    {
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box" id="product">
+                <div class="box-body">
+                    <div class="highlights">
+                        <h4 class="product-small-title">Thông số kĩ thuật</h4>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>@Model.TenSanPham</th>
+                                            <th></th>
+                                      
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Độ phân giải màn hình</td>
+                                            <td>@Model.DoPhanGiai</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Màn hình</td>
+                                            <td>@Model.ManHinh</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Camera trước</td>
+                                            <td>@Model.CamTruoc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Camera sau</td>
+                                            <td>@Model.CamSau</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Tốc độ CPU</td>
+                                            <td>@Model.CPU</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>ChipSet</td>
+                                            <td>@Model.Chip</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Ram</td>
+                                            <td>@Model.Ram</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Rom</td>
+                                            <td>@Model.ROM</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Hệ điều hành</td>
+                                            <td>@Model.HeDieuHanh</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Pin</td>
+                                            <td>@Model.Pin</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Dung lượng pin</td>
+                                            <td>@Model.DungluongPin</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Sim</td>
+                                            <td>@Model.Sim</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Wifi</td>
+                                            <td>@Model.wifi</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Bluetooth</td>
+                                            <td>@Model.Bluetooth </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>GPS</td>
+                                            <td>@Model.GPS</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box" id="product">
+                <div class="box-body">
+                    <div class="highlights">
+                        <h4 class="product-small-title">Chi tiết sản phẩm</h4>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                                @Html.Raw(Model.NoiDung)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- rating reviews  -->
+    <div id="rating">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box">
+                    <div class="box-head">
+                        <h3 class="head-title">Xếp hạng &amp; đánh giá</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="rating-review">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h1>4.8</h1>
+                                    <div class="product-rating">
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star-o"></i></span>
+                                    </div>
+                                    <p class="text-secondary">20 Ratings &amp; 10 Reviews</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h2>80%</h2>
+                                    <p class="text-secondary">Based on 20 Recommendations.</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h4>Have you used this product?</h4>
+                                    <a href="#" class="btn btn-primary btn-sm">review</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.rating reviews  -->
+        <!-- customers review  -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box">
+                    <div class="box-head">
+                        <h3 class="head-title">Phản hồi khách hàng</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="customer-reviews">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="product-rating">
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star-o"></i></span>
+                                    </div>
+                                    <p class="reviews-text">By <span class="text-default">Michael Byrd</span> on 14 August 2017 </p>
+                                    <p>Mauris aliquet augue seenim finibusat consectetur metus congutiam convallis aliquam conguen ornare exdolornon scelerisque nisl fringilla ut. Maecenas faucibus purus id elementum laoreen a hendrerit ested laoreet nibh vel lacus sagittis, eu laoreet metus viverraed rutrum.</p>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="divider-line"></div>
+                                </div>
+                            </div>
+                            <div class="customer-reviews">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="product-rating">
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star-o"></i></span>
+                                    </div>
+                                    <p class="reviews-text">By <span class="text-default">Marc Scott</span> on 13 August 2017 </p>
+                                    <p>Vivamus molestie enim ut libero condimentumvel malesuada mivulpuorem ipsum dolor sitamet consectetur adipiscing elinec semper orcinec ultricies ultricieunc velitest variussed suscipit sed dignissim acanteras aliquet magna ipsum dictum vulputate dolor suscipit non. </p>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="divider-line"></div>
+                                </div>
+                            </div>
+                            <div class="customer-reviews">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="product-rating">
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star-o"></i></span>
+                                    </div>
+                                    <p class="reviews-text">By <span class="text-default">William Cassidy</span> on 13 August 2017 </p>
+                                    <p>Suspendisse viverra nibh vel mattis aliqueroin ultricies vitaeex quis sceleriuisque eleifend convallis leoorbi ultricies turpis nullanec accumsan mi molestie nonaecenas cursus massa quis condimentum venenati uspendisse idmassaut lacus dignissim vestibuonec malesuada ultricies euismod. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- customers review  -->
+        <!-- reviews-form -->
+        <div id="review">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="box">
+                        <div class="box-head">
+                            <h3 class="head-title">Thêm đánh giá</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="review-form">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-rating">
+                                            <h5>Đánh giá : &nbsp;</h5>
+                                            <div class="star-rate" id="rateYo"></div>
+                                        </div>
+                                    </div>
+                                    <form>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label sr-only " for="name"></label>
+                                                <input id="name" type="text" class="form-control" placeholder="Name" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label sr-only " for="email"></label>
+                                                <input id="email" type="text" class="form-control" placeholder="Email" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label sr-only " for="textarea"></label>
+                                                <textarea class="form-control" id="textarea" name="textarea" rows="4" placeholder="Enter your Reviews"></textarea>
+                                            </div>
+                                            <button id="submit" name="singlebutton" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.reviews-form -->
+    </div>
+</div>
+<!-- /.product-description -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="head-title">Sản phẩm liên quan</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-carousel">
+        <div class="box-body">
+            <div class="row">
+                <div class="owl-carousel owl-two owl-theme">
+                    @foreach (var item in SpLienquan)
+                    {
+                        <div class="item">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <a href="/SanPham/CtSanPham/@item.ID">
+
+                                    <div class="product-block">
+                                        <div class="product-img"><img src="@item.image" alt=""></div>
+                                        <div class="product-content">
+                                            <h5><a href="#" class="product-title">@item.TenSanPham</a></h5>
+                                            <div class="product-meta">
+                                                @if (item.GiaKhuyenMai == 0)
+                                                {
+                                                    <a href="#" class="product-price">@(item.Gia.HasValue ? item.Gia.Value.ToString("N0") : "Liên hệ") đ</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#" class="product-price">@(item.Gia.HasValue ? item.Gia.Value.ToString("N0") : "") đ</a>
+                                                    <a href="#" class="discounted-price"><strike>@(item.Gia.HasValue ? item.Gia.Value.ToString("N0") : "Liên hệ")</strike></a>
+                                                }
+                                            </div>
+                                            <div class="shopping-btn">
+                                           
+                                                <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- /.product -->
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

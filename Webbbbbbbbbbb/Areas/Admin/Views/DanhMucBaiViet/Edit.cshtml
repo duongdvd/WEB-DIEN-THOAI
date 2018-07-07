@@ -1,0 +1,47 @@
+﻿@model Model.EF.DanhMucBaiViet
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section TenTrang{
+    Cập nhật
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Nhập thông tin mục
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        @using (Html.BeginForm("Edit", "DanhMucBaiViet", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TenDanhMuc, htmlAttributes: new { @class = "control-label col-md-3" })
+                                @Html.TextBoxFor(model => model.TenDanhMuc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenDanhMuc, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThuTu, htmlAttributes: new { @class = "control-label col-md-3" })
+                                @Html.TextBoxFor(model => model.ThuTu, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ThuTu, "", new { @class = "text-danger" })
+                            </div>
+
+                           
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Cập nhật" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

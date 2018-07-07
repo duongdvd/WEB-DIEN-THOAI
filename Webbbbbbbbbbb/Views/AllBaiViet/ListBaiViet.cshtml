@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<Model.EF.BaiViet>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:31432">Home</a></li>
+                        <li>Tin tức</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-header-->
+<!-- blog -->
+<div class="space-medium">
+    <div class="container">
+        <div class="row">
+            <div class="isotope">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 post-masonry ">
+
+
+
+                        <div class="post-block">
+                            <!-- post block -->
+                            <h3 class="post-title"><a href="#" class="title">@item.TenBaiViet</a></h3>
+                            <div class="meta">
+                                <span class="meta-date">@item.NgayTao</span>
+                                <span>|&nbsp; &nbsp;</span>
+                                <span class="meta-admin">By <a href="#" class="meta-title">@item.NguoiTao</a></span>
+                            </div>
+                            <div class="post-img">
+                                <a href="#" class="imghover">
+                                    <img src="@item.image" alt="" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="post-content">
+                                <p>@item.TieuDeBaiViet</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="st-pagination">
+                @Html.PagedListPager(Model, page => Url.Action("", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>

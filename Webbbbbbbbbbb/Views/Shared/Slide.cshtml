@@ -1,0 +1,23 @@
+﻿@model List<Model.EF.Slide>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <div class="slider-img">
+            <a href="@item.url"><img src="@item.Image" alt=""></a>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-8 col-sm-6 col-xs-12">
+                    @*<div class="slider-captions">
+                        <div class="brand-img"> 
+                            <img src="@item.url" alt="">
+                        </div>
+                        @Html.Raw(item.NoiDung)
+                        <a href="@item.url" class="btn btn-primary btn-lg hidden-xs">@item.btn</a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}

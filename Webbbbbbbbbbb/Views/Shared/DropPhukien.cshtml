@@ -1,0 +1,10 @@
+﻿
+@model List<Model.EF.DanhMucSanPham>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="/SanPham/SanPham/@item.ID">@item.TenDanhMuc</a>
+
+    </li>
+}

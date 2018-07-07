@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<Model.EF.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ListSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var DanhMuc = (List<Model.EF.DanhMucSanPham>)ViewBag.DanhMuc;
+}
+
+
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li>Product List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-header-->
+<!-- product-list -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <!-- sidenav-section -->
+                <div id='cssmenu'>
+                    <ul>
+                        @foreach (var item in DanhMuc)
+                        {
+                            <li class='has-su'>
+                                <a href='/SanPham/SanPham/@item.ID'>@item.TenDanhMuc</a>
+
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- /.sidenav-section -->
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+
+                <div class="row">
+                    <!-- product -->
+                    @foreach (var item in Model)
+                    {
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+
+                        <a href="/SanPham/CtSanPham/@item.ID">
+                            <div class="product-block">
+                                <div class="product-img"><img src="@item.image" alt=""></div>
+                                <div class="product-content">
+                                    <h5><a href="#" class="product-title">@item.TenSanPham</a></h5>
+                                    <div class="product-meta">
+                                        @if (item.GiaKhuyenMai == null)
+                    {
+                        <a href="#" class="product-price">@(item.Gia.HasValue ? item.Gia.Value.ToString("N0") + "đ" : "Liên hệ") </a>
+}
+else
+{
+                    <a href="#" class="product-price">@(item.GiaKhuyenMai.HasValue ? item.GiaKhuyenMai.Value.ToString("N0") + "đ" : "") </a>
+                    <a href="#" class="discounted-price"><strike>@(item.Gia.HasValue ? item.Gia.Value.ToString("N0") + "đ" : "Liên hệ")</strike></a>
+}
+                                    </div>
+                                    <div class="shopping-btn">
+
+                                        <a href="/GioHang/AddGioHang?masp=@item.ID&sl=1" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+
+                    </div>
+
+
+                    }
+                    <!-- /.product -->
+                    <!-- product -->
+                    <!-- /.product -->
+                </div>
+                <div class="row">
+                    <!-- pagination start -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="st-pagination">
+                            @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page, @searchString = @ViewBag.SearchString }))
+                        </div>
+                    </div>
+                    <!-- pagination close -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.product-list -->

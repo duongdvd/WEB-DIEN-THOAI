@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DuongxxxModelStoreContainer" CdmEntityContainer="DuongxxxEntities">
+    <FunctionImportMapping FunctionImportName="thongke" FunctionName="DuongxxxModel.Store.thongke">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DuongxxxModel.thongke_Result1">
+          <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="Tong" ColumnName="Tong" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

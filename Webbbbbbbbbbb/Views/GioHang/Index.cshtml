@@ -1,0 +1,123 @@
+﻿@model List<Webbbbbbbbbbb.Models.Giohang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li>GioHang</li>
+
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-header-->
+<!-- cart-section -->
+<div class="space-medium">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="box">
+                    <div class="box-head">
+                        <h3 class="head-title">Giỏ hàng</h3>
+                    </div>
+                    <!-- cart-table-section -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <div class="cart">
+                                @if (Model.Count > 0)
+                                {
+                                    <table class="table table-bordered ">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span>Tên sản phẩm</span>
+                                                </th>
+                                                <th>
+                                                    <span>Giá</span>
+                                                </th>
+                                                <th>
+                                                    <span>Số lượng</span>
+                                                </th>
+
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="#"><img src="@item.SanPham.image" alt=""></a>
+                                                        <span><a href="#">@item.SanPham.TenSanPham</a></span>
+                                                    </td>
+                                                    @if (item.SanPham.GiaKhuyenMai != null)
+                                                    {
+                                                        <td> @item.SanPham.GiaKhuyenMai.GetValueOrDefault(0).ToString("N0")</td>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <td> @item.SanPham.Gia.GetValueOrDefault(0).ToString("N0")</td>
+                                                    }
+                                                    <td>
+                                                        <div class="product-quantity">
+                                                            <div class="quantity">
+                                                                <input type="number" data-id="@item.SanPham.ID" class="input-text qty text txtQuantity" step="1" min="1" max="20" name="quantity" value="@item.SoLuong" title="Qty" size="4" pattern="[0-9]*">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+
+                                                    <td>
+                                                        <a href="/GioHang/Delete/@item.SanPham.ID">Xóa</a>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                                else
+                                {
+                                    <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                }
+                            </div>
+                            <!-- /.cart-table-section -->
+                        </div>
+                    </div>
+                </div>
+                <a href="/Home/Index" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
+            </div>
+            <!-- cart-total -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="box mb30">
+                 
+                    <div class="box-body">
+
+                        <div class=" table-responsive">
+                        
+                            <a href="GioHang/ThanhToan" id="btnthanhtoan" class="btn btn-primary btn-block" href="GioHang/ThanhToan">Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- coupon-section -->
+                <!-- /.coupon-section -->
+            </div>
+        </div>
+        <!-- /.cart-total -->
+    </div>
+</div>
+<!-- /.cart-section -->
